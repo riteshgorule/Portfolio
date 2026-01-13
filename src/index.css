@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Monoton&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-retro-dark: #1a0f0a;
+  --color-retro-brown: #2c1810;
+  --color-retro-cream: #f5e6d3;
+  --color-retro-orange: #ff6f61;
+  --color-retro-yellow: #ffd54f;
+  --color-retro-pink: #ff9fb2;
+  --color-retro-sunset-pink: #ff6b9d;
+  --color-retro-sunset-orange: #ff8c42;
+  --color-retro-sunset-purple: #6a0572;
+}
+
+@layer utilities {
+  .bg-gradient-radial {
+    background: radial-gradient(circle, var(--tw-gradient-stops));
+  }
+
+  .font-retro {
+    font-family: 'Monoton', cursive;
+    letter-spacing: 0.1em;
+  }
+
+  .retro-text-shadow {
+    text-shadow:
+      3px 3px 0px rgba(0, 0, 0, 0.8),
+      6px 6px 0px rgba(255, 111, 97, 0.3);
+  }
+
+  .shadow-retro {
+    box-shadow:
+      6px 6px 0px rgba(0, 0, 0, 0.8);
+  }
+
+  .shadow-retro-heavy {
+    box-shadow:
+      5px 5px 0px rgba(0, 0, 0, 0.9),
+      9px 9px 0px rgba(255, 111, 97, 0.4);
+  }
+
+  .shadow-retro-xl {
+    box-shadow:
+      10px 10px 0px rgba(0, 0, 0, 0.9),
+      16px 16px 0px rgba(255, 213, 79, 0.5);
+  }
+
+  .bg-retro-noise {
+    background-image: url('data:image/svg+xml,%3Csvg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="3.24" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)"/%3E%3C/svg%3E');
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 1s ease-in;
+  }
+
+  .animate-fade-in-delay {
+    animation: fadeIn 1s ease-in 0.3s both;
+  }
+
+  .animate-fade-in-delay-2 {
+    animation: fadeIn 1s ease-in 0.6s both;
+  }
+
+  .animate-fade-in-delay-3 {
+    animation: fadeIn 1s ease-in 0.9s both;
+  }
+
+  .delay-700 {
+    animation-delay: 700ms;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+* {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #2c1810;
+}
