@@ -176,41 +176,92 @@ export default function Home({ scrollToSection }) {
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="py-12 sm:py-20 bg-retro-dark border-t-4 sm:border-t-8 border-retro-yellow">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl sm:text-4xl md:text-6xl font-bold text-center mb-12 sm:mb-16 font-retro tracking-[0.05em] sm:tracking-[0.3em] break-words leading-tight">
+      <section id="projects" className="py-16 sm:py-24 bg-retro-dark border-t-4 sm:border-t-8 border-retro-yellow relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <h2 className="text-3xl sm:text-5xl md:text-7xl font-bold text-center mb-16 sm:mb-24 font-retro tracking-[0.05em] sm:tracking-[0.2em] break-words leading-tight">
             <span className="text-retro-yellow retro-text-shadow">
               FEATURED PROJECTS
             </span>
           </h2>
-          <div className="grid md:grid-cols-2 gap-6 sm:gap-8">
-            {projects.map((project, index) => (
-              <div
-                key={index}
-                className="bg-retro-brown border-4 border-retro-orange p-4 sm:p-8 hover:border-retro-yellow transition-all transform hover:scale-101 shadow-retro-heavy hover:shadow-retro-xl group"
-              >
-                <h3 className="text-lg sm:text-2xl font-bold mb-2 sm:mb-3 text-retro-orange group-hover:text-retro-yellow transition-colors font-retro tracking-wider uppercase break-words">
-                  {project.title}
-                </h3>
-                <p className="text-retro-cream/80 mb-4 leading-relaxed text-sm sm:text-base">{project.description}</p>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.technologies.map((tech, techIndex) => (
-                    <span
-                      key={techIndex}
-                      className="px-2 sm:px-3 py-1 bg-retro-orange/20 text-retro-orange text-xs sm:text-sm border-2 border-retro-orange uppercase tracking-wider font-retro"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-                <a
-                  href={project.link}
-                  className="inline-flex items-center gap-2 text-retro-yellow hover:text-retro-orange transition-colors uppercase tracking-wider font-retro text-xs sm:text-sm font-bold"
+          
+          <div className="space-y-24 sm:space-y-32">
+            {projects.map((project, index) => {
+              // Flips the flex layout so Image is on Right, Content on Left (Project 02, 04)
+              const isReversed = index % 2 === 1;
+              
+              // Aligns text to the right when Content is on the Right side (Project 01, 03)
+              const alignRight = index % 2 === 0;
+
+              return (
+                <div 
+                  key={index}
+                  className={`flex flex-col lg:flex-row items-center gap-8 sm:gap-12 lg:gap-0 ${isReversed ? 'lg:flex-row-reverse' : ''}`}
                 >
-                  View Project <ExternalLink size={14} className="sm:w-4 sm:h-4" />
-                </a>
-              </div>
-            ))}
+                  
+                  {/* Image Placeholder Side */}
+                  <div className="w-full lg:w-7/12 relative group z-0">
+                    {/* Decorative background block */}
+                    <div className={`absolute inset-0 border-4 border-retro-cream translate-x-3 translate-y-3 sm:translate-x-6 sm:translate-y-6 transition-transform duration-300 group-hover:translate-x-8 group-hover:translate-y-8 ${isReversed ? 'bg-retro-pink' : 'bg-retro-orange'}`}></div>
+                    
+                    {/* Main Image Container */}
+                    <div className="relative aspect-[16/9] bg-retro-brown border-4 border-retro-cream flex items-center justify-center overflow-hidden z-10">
+                      <div className="absolute inset-4 sm:inset-6 border-2 border-dashed border-retro-cream/30 flex flex-col items-center justify-center p-4 text-center">
+                        <Code2 size={40} className="text-retro-cream/30 mb-3" />
+                        <span className="text-retro-cream/60 font-retro tracking-widest uppercase text-xs sm:text-sm">
+                          Screenshot Placement
+                        </span>
+                        <span className="text-retro-cream/40 text-[10px] sm:text-xs mt-1">
+                          (Project_{index + 1}.png)
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Content Side */}
+                  <div className={`w-full lg:w-6/12 flex flex-col z-10 ${alignRight ? 'lg:items-end lg:-ml-12 items-start' : 'lg:items-start lg:-mr-12 items-start'}`}>
+                    
+                    <div className="inline-block px-3 py-1 mb-4 border-2 border-retro-yellow text-retro-yellow font-retro text-xs sm:text-sm uppercase tracking-widest bg-retro-yellow/10 backdrop-blur-sm">
+                      Project 0{index + 1}
+                    </div>
+                    
+                    {/* Title */}
+                    <h3 className={`text-2xl sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 text-retro-cream font-retro tracking-wider uppercase break-words hover:text-retro-orange transition-colors retro-text-shadow text-left ${alignRight ? 'lg:text-right' : ''}`}>
+                      {project.title}
+                    </h3>
+                    
+                    {/* Overlapping Description Box */}
+                    <div className={`bg-retro-brown border-4 border-retro-orange p-5 sm:p-8 mb-6 sm:mb-8 shadow-[6px_6px_0_#FE4444] w-full relative group-hover:-translate-y-1 transition-transform duration-300 text-left ${alignRight ? 'lg:text-right' : ''}`}>
+                      <p className="text-retro-cream/90 leading-relaxed text-sm sm:text-base lg:text-lg">
+                        {project.description}
+                      </p>
+                    </div>
+                    
+                    {/* Tech Stack Pills */}
+                    <div className={`flex flex-wrap gap-2 sm:gap-3 mb-8 justify-start ${alignRight ? 'lg:justify-end' : ''}`}>
+                      {project.technologies.map((tech, techIndex) => (
+                        <span 
+                          key={techIndex} 
+                          className="px-3 py-1.5 bg-retro-dark text-retro-cream text-xs sm:text-sm border-2 border-retro-cream/50 uppercase tracking-wider font-retro hover:border-retro-yellow transition-colors cursor-default"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+
+                    {/* Action Button */}
+                    <a 
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-3 px-6 sm:px-8 py-3 sm:py-4 bg-retro-yellow hover:bg-retro-orange text-retro-dark font-bold uppercase tracking-wider font-retro text-sm sm:text-base border-4 border-retro-dark shadow-[4px_4px_0_#000] hover:shadow-[6px_6px_0_#FE4444] transition-all duration-200 transform hover:-translate-y-1"
+                    >
+                      View Project <ExternalLink size={18} />
+                    </a>
+                    
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
