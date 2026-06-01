@@ -336,12 +336,9 @@ export default function Home({ scrollToSection }) {
         </div>
       </section>
 
-      {/* NEW CONTACT & FOOTER SECTION 
-         Based on the "flomodia" inspiration image.
-      */}
       <section id="contact" className="px-4 py-8 sm:px-8 sm:py-12 bg-[#2a0a0a]">
         {/* Large Rounded Card Container */}
-        <div className="max-w-7xl mx-auto bg-[#FDF8E8] rounded-[2rem] sm:rounded-[3rem] p-6 sm:p-12 md:p-16 flex flex-col justify-between min-h-[500px] sm:min-h-[600px] relative overflow-hidden">
+        <div className="max-w-7xl mx-auto bg-[#FDF8E8] rounded-[2rem] sm:rounded-[3rem] p-6 sm:p-12 md:p-16 flex flex-col justify-between min-h-[500px] sm:min-h-[550px] relative overflow-hidden">
 
           {/* Header Row: Logo & CTA */}
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 mb-12 sm:mb-20">
@@ -350,7 +347,6 @@ export default function Home({ scrollToSection }) {
               <h3 className="text-[#3E1C1C] text-3xl sm:text-4xl font-serif font-black italic tracking-tight">
                 Ritesh.
               </h3>
-              <p className="text-[#3E1C1C] text-sm font-medium mt-1">Inspire, educate and build.</p>
             </div>
 
             <div className="flex flex-wrap gap-4">
@@ -396,7 +392,7 @@ export default function Home({ scrollToSection }) {
           {/* Footer Row (Inside the card) */}
           <div className="mt-16 sm:mt-auto flex flex-col-reverse md:flex-row justify-between items-start md:items-end gap-6 pt-8 border-t border-[#3E1C1C]/10">
             <p className="text-[#3E1C1C]/70 font-medium text-sm">
-              © 2025 Portfolio. Website made by Ritesh.
+              © {new Date().getFullYear()} Portfolio. Website made by Ritesh.
             </p>
 
             <div className="flex gap-4">
